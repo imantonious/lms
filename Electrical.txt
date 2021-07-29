@@ -1,0 +1,4 @@
+CircuitDesigns				Lavigne				Electrical			false
+ComputerSystems				Monet				Electrical			false	
+ElectronicCircuits			Toussaint			Electrical			false
+Transistors					Arnaud				Electrical			false

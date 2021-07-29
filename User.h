@@ -8,7 +8,7 @@ using namespace std;
 class User
 {
 private:
-	bool isAdmin = false; //? default value
+	// bool isAdmin = false; //? default value
 	string name;
 
 public:

@@ -3,20 +3,22 @@
 #define SECTION_H
 
 #include "Author.h"
-#include "Section.h"
 
 #include <string>
 #include <vector>
+
+using namespace std;
 
 class Section
 {
 private:
 	string name;
-	vector<Book> books;
+	// vector<Book> books;
 
 public:
+	Section();
 	Section(string);
-	Section(string, Book);
+	// Section(string, Book);
 	~Section();
 };
 
