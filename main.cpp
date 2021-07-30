@@ -155,7 +155,7 @@ void populateLibrary(int a){
 
 	for (int i = 0 ; i < a; i++){
 			//cout << departments[i];
-		openBookFile(departments[i]);
+		*openBookFile(departments[i]);
 	}
 }
 
@@ -187,16 +187,20 @@ string *openBookFile(string book){
 
 	string *bookProps = new string[4];
 
-	string title;
-	string author;
-	string dept;
-	bool checkedOut;
+
 
 	ifstream myfile;
-	myfile.open(fileName); 
-		while (myfile){
+	myfile.open(book); 
+	while (myfile){
+		string title;
+		string author;
+		string dept;
+		bool checkedOut;
 
-		}
+		myfile >> title >> author >> dept >> checkedOut;
+		Book book = new Book();
+		
+	}
 	myfile.close();
     return bookProps;
 }

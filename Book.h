@@ -14,7 +14,7 @@ class Book
 private:
 	string title;
 	// Author author;
-	// bool isAvailable = true;
+	bool isAvailable;
 
 public:
 	Book();
