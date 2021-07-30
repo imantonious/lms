@@ -20,7 +20,8 @@ void processMainMenuSelection(int);
 void studentSignin();
 void adminSignin();
 void loginPrompt();
-void populateLibrary();
+void populateLibrary(int);
+string *openBookFile();
 void checkOutBook();
 void showAllSections();
 void showAllBooks();
@@ -28,12 +29,6 @@ void bookReturn();
 
 int main(int argc, char const *argv[])
 {
-
-	// where do we want the call to users[x]? So the x gets grabbed from the username/id login? 
-
-	// in the loginfunction where the user inputs their userid, and it will return the object of user
-
-	// get all book info from files
 
 	const int SECTIONS = 6;
 
@@ -48,7 +43,7 @@ int main(int argc, char const *argv[])
 	Section Architecture = Section("Architecture");
 
 	Section library[SECTIONS] = { Computer, Electrical, Civil, Electronics, Mechanical, Architecture };
-
+	/*
 	Section * lib;
 	Section lll;
 	cout << "Library is: " << library << endl;
@@ -59,7 +54,8 @@ int main(int argc, char const *argv[])
 
 	cout << ptrLib;
 	//cout << &lib[0];
-
+*/
+	populateLibrary(SECTIONS);
 	displayWelcome();
 	do
 	{
@@ -152,28 +148,18 @@ void loginPrompt()
 // Sections -> Computer, Electrical, Civil, Electronics, Mechanical, and Architecture
 // create books in file
 // Department of books would come from a file.  Computer.txt, Electrical.txt, etc. 
-void populateLibrary(){
-	const char *departments[6] = {"Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"};
+void populateLibrary(int a){
+	const char *departments[a] = {"Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"};
 	
 	//string departments["Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"];
 
-	for (int i = 0 ; i < 6; i++){
+	for (int i = 0 ; i < a; i++){
 			//cout << departments[i];
 
 		ifstream myfile;
-		myfile.open(departments[i]); // something like this
+		myfile.open(departments[i]); 
+		*openBookFile();
 
-		// while (myfile){
-		// 	for(int i = 0; i < 4; i++)
-				
-		// 		string author, dept;
-		// 		bool a;
-				
-		// 		int name = myfile.get();
-
-		// } 
-
-		cout << departments[0];
 		myfile.close();
 	}
 }
@@ -196,9 +182,14 @@ void bookReturn(){
 }
 
 void showAllBooks(){
+
 	// loop through all sections and print name of book (book.title) if it is available to checkout
 	
 	return;
+}
+
+string *openBookFile(){	
+	
 }
 // g++ main.cpp -o main.out
 // then ./main.out
