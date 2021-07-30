@@ -43,18 +43,7 @@ int main(int argc, char const *argv[])
 	Section Architecture = Section("Architecture");
 
 	Section library[SECTIONS] = { Computer, Electrical, Civil, Electronics, Mechanical, Architecture };
-	/*
-	Section * lib;
-	Section lll;
-	cout << "Library is: " << library << endl;
-	lib = library;
-	
-	Section *ptrLib;
-	ptrLib = library;
 
-	cout << ptrLib;
-	//cout << &lib[0];
-*/
 	populateLibrary(SECTIONS);
 	displayWelcome();
 	do
@@ -84,17 +73,6 @@ void displayMainMenu()
 	processMainMenuSelection(ch);
 }
 
-/*
-void displayLoginMenu()
-{
-	cout << endl;
-	cout << "1. Sign in as Student" << endl;
-	//cout << "2. Sign in as Admin" << endl;
-	cout << "0. EXIT" << endl;
-	cout << "Option: ";
-}
-*/
-
 void processMainMenuSelection(int option)
 {
 	if (option == 0)
@@ -107,7 +85,7 @@ void processMainMenuSelection(int option)
 	switch (option)
 	{
 	case 1:
-		checkOutBook(); //TODO: make this function work. (based on userID / ID#)
+		checkOutBook(); 
 		break;
 
 	case 2:
@@ -149,25 +127,34 @@ void loginPrompt()
 // create books in file
 // Department of books would come from a file.  Computer.txt, Electrical.txt, etc. 
 void populateLibrary(int a){
-	string departments[a] = {"Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"};
-	
-	//string departments["Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"];
+	const char * departments[a] = {"Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"};
 
 	for (int i = 0 ; i < a; i++){
-			//cout << departments[i];
-		*openBookFile(departments[i]);
+		openBookFile(departments[i]);
 	}
 }
 
 void checkOutBook() {
-	// show menu want to see sections, allbooks
-	// showAllSections();
-	// showAllBooks();
-	cout << "\nEnter an option: \n"
-		<< "1. " << endl
-		<< "2. " << endl;
+	cout << "Book Checkout: "
+		<< "1. Enter the name of the book you would like to check out: " << endl
+		<< "2. View books available to check out" << endl;
 
-	
+	int i;
+	cin >> i;
+	while(i!=0)
+		switch(i)	{
+		case 0:
+			break;
+		case 1:
+			 //TODO: make this function take the name of the book from the user and switch isAvailable bool to false
+			break;
+		case 2:
+			//TODO: output all the books with isAvailable set to true. 
+			break;
+		default:
+			cout << "Please enter a valid option.\n";
+			break;
+		}
 	return;
 }
 
@@ -184,7 +171,7 @@ void showAllBooks(){
 }
 
 string *openBookFile(string book){	
-
+	//string book = books;
 	string *bookProps = new string[4];
 
 
@@ -198,8 +185,6 @@ string *openBookFile(string book){
 		bool checkedOut;
 
 		myfile >> title >> author >> dept >> checkedOut;
-		Book book = new Book();
-		
 	}
 	myfile.close();
     return bookProps;
