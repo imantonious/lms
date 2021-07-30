@@ -21,7 +21,7 @@ void studentSignin();
 void adminSignin();
 void loginPrompt();
 void populateLibrary(int);
-string *openBookFile();
+string *openBookFile(string);
 void checkOutBook();
 void showAllSections();
 void showAllBooks();
@@ -149,18 +149,13 @@ void loginPrompt()
 // create books in file
 // Department of books would come from a file.  Computer.txt, Electrical.txt, etc. 
 void populateLibrary(int a){
-	const char *departments[a] = {"Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"};
+	string departments[a] = {"Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"};
 	
 	//string departments["Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"];
 
 	for (int i = 0 ; i < a; i++){
 			//cout << departments[i];
-
-		ifstream myfile;
-		myfile.open(departments[i]); 
-		*openBookFile();
-
-		myfile.close();
+		openBookFile(departments[i]);
 	}
 }
 
@@ -188,8 +183,22 @@ void showAllBooks(){
 	return;
 }
 
-string *openBookFile(){	
-	
+string *openBookFile(string book){	
+
+	string *bookProps = new string[4];
+
+	string title;
+	string author;
+	string dept;
+	bool checkedOut;
+
+	ifstream myfile;
+	myfile.open(fileName); 
+		while (myfile){
+
+		}
+	myfile.close();
+    return bookProps;
 }
 // g++ main.cpp -o main.out
 // then ./main.out
