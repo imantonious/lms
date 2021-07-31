@@ -42,14 +42,14 @@ int main(int argc, char const *argv[])
 	Section Mechanical = Section("Mechanical");
 	Section Architecture = Section("Architecture");
 
-	Section library[SECTIONS] = { Computer, Electrical, Civil, Electronics, Mechanical, Architecture };
+	Section library[SECTIONS] = {Computer, Electrical, Civil, Electronics, Mechanical, Architecture};
 
-	populateLibrary(SECTIONS);
+	populateLibrary(SECTIONS); // ? should accept library and return it populated
 	displayWelcome();
 	do
 	{
-		cout << "enters dowhile"<< endl;
-		displayMainMenu(); //TODO: shows up twice after making choice. fix
+		cout << "enters dowhile" << endl;
+		displayMainMenu(); // TODO: shows up twice after making choice. fix
 	} while (true);
 	return 0;
 }
@@ -66,8 +66,7 @@ void displayMainMenu()
 	cout << "2. Return Books" << endl;
 	cout << "3. View All Books" << endl;
 	cout << "0. Exit" << endl;
-	
-	//char ch = '0';
+
 	int ch;
 	cin >> ch;
 	processMainMenuSelection(ch);
@@ -85,11 +84,11 @@ void processMainMenuSelection(int option)
 	switch (option)
 	{
 	case 1:
-		checkOutBook(); 
+		checkOutBook();
 		break;
 
 	case 2:
-		bookReturn(); //TODO: make this function work. (based on userID / ID#)
+		bookReturn(); // TODO: make this function work. (based on userID / ID#)
 		break;
 
 	default:
@@ -103,82 +102,81 @@ void studentSignin()
 	loginPrompt();
 }
 
-void adminSignin()
-{	
-	bool pwIsValid;
-	cout << "FUCK";
-}
-
 void loginPrompt()
 {
 	int userID;
-	// char passWord[8];
 
 	cout << "Enter the username: ";
 	cin >> userID;
-	
-	// cout << "\nEnter the password: ";
-	// cin >> passWord;
-	//return passWord;
-}
 
+}
 
 // Sections -> Computer, Electrical, Civil, Electronics, Mechanical, and Architecture
 // create books in file
-// Department of books would come from a file.  Computer.txt, Electrical.txt, etc. 
-void populateLibrary(int a){
-	const char * departments[a] = {"Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"};
+// Department of books would come from a file.  Computer.txt, Electrical.txt, etc.
 
-	for (int i = 0 ; i < a; i++){
+// ? change to accept library variable then return a populated library
+void populateLibrary(int a) 
+{
+	const char *departments[6] = {"Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"};
+
+	for (int i = 0; i < a; i++)
+	{
 		openBookFile(departments[i]);
 	}
 }
 
-void checkOutBook() {
-	cout << "Book Checkout: "
-		<< "1. Enter the name of the book you would like to check out: " << endl
-		<< "2. View books available to check out" << endl;
+void checkOutBook()
+{
+	cout << "\tBook Checkout:\n"
+		 << "1. Enter the name of the book you would like to check out" << endl
+		 << "2. View books available to check out" << endl;
 
 	int i;
 	cin >> i;
-	while(i!=0)
-		switch(i)	{
-		case 0:
-			break;
-		case 1:
-			 //TODO: make this function take the name of the book from the user and switch isAvailable bool to false
-			break;
-		case 2:
-			//TODO: output all the books with isAvailable set to true. 
-			break;
-		default:
-			cout << "Please enter a valid option.\n";
-			break;
+	while (i)
+	{
+		switch (i)
+		{
+			case 0:
+				break;
+			case 1:
+				// TODO: make this function take the name of the book from the user and switch isAvailable bool to false
+				cout << "checkoutBookByName();" << endl;
+				i = 0; // exits loop
+				break;
+			case 2:
+				// TODO: output all the books with isAvailable set to true.
+				cout << "viewAllAvailableBooks();" << endl;
+				i = 0; // exits loop
+				break;
+			default:
+				cout << "Please enter a valid option.\n";
+				break;
 		}
-	return;
+	}
 }
 
-void bookReturn(){
+void bookReturn()
+{
 	// change
 	return;
 }
 
-void showAllBooks(){
-
-	// loop through all sections and print name of book (book.title) if it is available to checkout
-	
+void showAllBooks() // loop through all sections and print name of book (book.title) if it is available to checkout
+{
 	return;
 }
 
-string *openBookFile(string book){	
-	//string book = books;
+// ? not sure what this returns. should be void?
+string *openBookFile(string book)
+{
 	string *bookProps = new string[4];
 
-
-
 	ifstream myfile;
-	myfile.open(book); 
-	while (myfile){
+	myfile.open(book);
+	while (myfile)
+	{
 		string title;
 		string author;
 		string dept;
@@ -187,7 +185,9 @@ string *openBookFile(string book){
 		myfile >> title >> author >> dept >> checkedOut;
 	}
 	myfile.close();
-    return bookProps;
+	return bookProps;
 }
+
+// in vscode terminal
 // g++ main.cpp -o main.out
-// then ./main.out
+// ./main.out
