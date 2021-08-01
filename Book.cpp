@@ -44,10 +44,15 @@ Book::Book(string t, string a, string s, bool i)
 	isAvailable = i;
 }
 
-void Book::getBookProps(){
+string Book::getBookProps(){
 	cout << "\nThe title of this book is: " << title << endl;
-	cout << "The author is: " << author << endl;
-	cout << "The department is: " << dept << endl;
+
+	if (isAvailable == true){
+		cout << "This book is available to check out." << endl;
+	}
+	else
+		cout << "This book is currently unavailable.";
+	return title;
 }
 
 Book::~Book()

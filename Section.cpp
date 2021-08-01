@@ -27,8 +27,16 @@ string Section::getName(){
 }
 
 void Section::addBook(Book book){
+	book.getBookProps();
 	books.push_back(book);
 }
+
+void Section::viewBooks(){
+	for(int i = 0; i < books.size(); i++){
+		books[i].getBookProps();
+	}
+}
+
 Section::~Section() {
 };
 

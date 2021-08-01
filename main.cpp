@@ -49,8 +49,10 @@ int main(int argc, char const *argv[])
 	
 	for (int i = 0; i < SECTIONS; i++){
 		Section lib = library[i];
-		populateLibrary(lib); // ? should accept library and return it populated
+		populateLibrary(lib); 
+		lib.viewBooks();// ? should accept library and return it populated
 	}
+
 	displayWelcome();
 	do
 	{
@@ -96,6 +98,8 @@ void processMainMenuSelection(int option)
 	case 2:
 		bookReturn(); // TODO: make this function work. (based on userID / ID#)
 		break;
+	case 3:
+		showAllBooks();
 
 	default:
 		cout << "Please enter a valid option.\n";
@@ -121,7 +125,6 @@ void loginPrompt()
 // create books in file
 // Department of books would come from a file.  Computer.txt, Electrical.txt, etc.
 
-// Still working on populateLibrary
 Section populateLibrary(Section lib) 
 {
 
@@ -141,9 +144,7 @@ Section populateLibrary(Section lib)
 
 		//line = myfile.getline();
 		while(myfile){
-			if (!myfile.eof()){
 			getline(myfile, title, '\t');
-			}
 			getline(myfile, author, '\t');
 			getline(myfile, dept, '\t');
 			getline(myfile, checkedOut, '\n');
@@ -154,7 +155,8 @@ Section populateLibrary(Section lib)
 			cout << "Testing bool (though it's really a string): " << checkedOut << endl << endl; */
 			
 			Book book = Book(title, author, dept, isA);
-			book.getBookProps();
+			//book.getBookProps();
+			lib.addBook(book);
 		}
 	}
 	myfile.close();
@@ -201,7 +203,13 @@ void bookReturn()
 
 void showAllBooks() // loop through all sections and print name of book (book.title) if it is available to checkout
 {
-	return;
+	/*
+	for (int i = 0; i < SECTIONS; i++){
+		Section lib = library[i];
+		populateLibrary(lib); 
+		lib.viewBooks();// ? should accept library and return it populated
+	}
+	*/
 }
 
 

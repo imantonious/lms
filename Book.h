@@ -25,7 +25,8 @@ public:
 	// Book(string, Author);
 	//Book(string, string, string);
 	Book(string, string, string, bool);
-	void getBookProps();
+	//void getBookProps();
+	string getBookProps();
 	~Book();
 
 };
