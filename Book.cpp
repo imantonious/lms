@@ -1,5 +1,4 @@
 
-#include "Section.cpp"
 #include "Author.cpp"
 #include "Book.h"
 
@@ -44,6 +43,13 @@ Book::Book(string t, string a, string s, bool i)
 	dept = s;
 	isAvailable = i;
 }
+
+void Book::getBookProps(){
+	cout << "\nThe title of this book is: " << title << endl;
+	cout << "The author is: " << author << endl;
+	cout << "The department is: " << dept << endl;
+}
+
 Book::~Book()
 {
 }

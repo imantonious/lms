@@ -6,6 +6,7 @@
 #include "Section.h"
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -24,7 +25,8 @@ public:
 	// Book(string, Author);
 	//Book(string, string, string);
 	Book(string, string, string, bool);
-	//~Book();
+	void getBookProps();
+	~Book();
 
 };
 #endif
