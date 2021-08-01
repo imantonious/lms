@@ -14,13 +14,15 @@ class Book
 private:
 	string title;
 	// Author author;
-	bool isAvailable;
+	string author;
+	bool isAvailable;// = true;
 
 public:
 	Book();
 	Book(string, string);
 	// Book(string, Author);
 	Book(string, string, string);
-	~Book();
+	//~Book();
+	// Commenting this out let me compile. No clue why.
 };
 #endif

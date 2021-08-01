@@ -9,6 +9,7 @@
 #include <string>
 #include <cstring>
 #include <fstream>
+#include <array>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ void processMainMenuSelection(int);
 void studentSignin();
 void adminSignin();
 void loginPrompt();
-void populateLibrary(int);
+Section populateLibrary(Section lib);
 string *openBookFile(string);
 void checkOutBook();
 void showAllSections();
@@ -43,8 +44,11 @@ int main(int argc, char const *argv[])
 	Section Architecture = Section("Architecture");
 
 	Section library[SECTIONS] = {Computer, Electrical, Civil, Electronics, Mechanical, Architecture};
-
-	populateLibrary(SECTIONS); // ? should accept library and return it populated
+	
+	for (int i = 0; i < SECTIONS; i++){
+		Section lib = library[i];
+		populateLibrary(lib); // ? should accept library and return it populated
+	}
 	displayWelcome();
 	do
 	{
@@ -115,20 +119,19 @@ void loginPrompt()
 // create books in file
 // Department of books would come from a file.  Computer.txt, Electrical.txt, etc.
 
-// ? change to accept library variable then return a populated library
-void populateLibrary(int a) 
+// Still working on populateLibrary
+Section populateLibrary(Section lib) 
 {
-	const char *departments[6] = {"Architecture.txt", "Civil.txt", "Computer.txt", "Electrical.txt", "Electronics.txt", "Mechanical.txt"};
-
-	for (int i = 0; i < a; i++)
-	{
-		openBookFile(departments[i]);
-	}
+	cout << "\n\nTesting the array of sections: " << "\n\t";
+	lib.getName();/*
+	Book book = Book("", "");
+	lib.addBook(book);               We're gonna have to figure this one out.  */
+	return lib;
 }
 
 void checkOutBook()
 {
-	cout << "\tBook Checkout:\n"
+	cout << "\n\n\tBook Checkout:\n"
 		 << "1. Enter the name of the book you would like to check out" << endl
 		 << "2. View books available to check out" << endl;
 
@@ -139,7 +142,7 @@ void checkOutBook()
 		switch (i)
 		{
 			case 0:
-				break;
+				return;
 			case 1:
 				// TODO: make this function take the name of the book from the user and switch isAvailable bool to false
 				cout << "checkoutBookByName();" << endl;
@@ -168,7 +171,9 @@ void showAllBooks() // loop through all sections and print name of book (book.ti
 	return;
 }
 
-// ? not sure what this returns. should be void?
+
+// Just testing out an iterator for reading files.
+/*
 string *openBookFile(string book)
 {
 	string *bookProps = new string[4];
@@ -191,3 +196,4 @@ string *openBookFile(string book)
 // in vscode terminal
 // g++ main.cpp -o main.out
 // ./main.out
+*/

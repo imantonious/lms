@@ -22,7 +22,13 @@ Section::Section(string n)
 // 	name = n;
 // 	books.push_back(b);
 // }
+void Section::getName(){
+	cout << name;
+}
 
+void Section::addBook(Book book){
+	books.push_back(book);
+}
 Section::~Section() {
 };
 
