@@ -10,9 +10,10 @@ Book::Book()
 {
 	title = "";
 	author = "";//Author("");
+	dept = "";
 	isAvailable = true;
 }
-
+/*
 Book::Book(string t, string a)
 {
 	title = t;
@@ -33,7 +34,16 @@ Book::Book(string t, string a, string s)
 	// section = Section(s);
 	author = a;
 }
-
+*/
+Book::Book(string t, string a, string s, bool i)
+{
+	title = t;
+	//author = Author(a, title);
+	// section = Section(s);
+	author = a;
+	dept = s;
+	isAvailable = i;
+}
 Book::~Book()
 {
 }

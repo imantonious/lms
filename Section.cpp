@@ -22,8 +22,8 @@ Section::Section(string n)
 // 	name = n;
 // 	books.push_back(b);
 // }
-void Section::getName(){
-	cout << name;
+string Section::getName(){
+	return name;
 }
 
 void Section::addBook(Book book){

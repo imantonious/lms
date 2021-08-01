@@ -19,7 +19,7 @@ private:
 public:
 	Section();
 	Section(string);
-	void getName();
+	string getName();
 	void addBook(Book);
 	// Section(string, Book);
 	~Section();

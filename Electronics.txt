@@ -1,3 +1,3 @@
-Circuits					Tesla			Electronics			false
-AdvancedCircuitry			Marks			Electronics			false
-Robotics					Straub			Electronics			false
+Circuits	Tesla	Electronics	false
+AdvancedCircuitry	Marks	Electronics	false
+Robotics	Straub	Electronics	false

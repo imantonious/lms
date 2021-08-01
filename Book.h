@@ -16,13 +16,15 @@ private:
 	// Author author;
 	string author;
 	bool isAvailable;// = true;
+	string dept;
 
 public:
 	Book();
-	Book(string, string);
+	//Book(string, string);
 	// Book(string, Author);
-	Book(string, string, string);
+	//Book(string, string, string);
+	Book(string, string, string, bool);
 	//~Book();
-	// Commenting this out let me compile. No clue why.
+
 };
 #endif

@@ -22,7 +22,7 @@ void studentSignin();
 void adminSignin();
 void loginPrompt();
 Section populateLibrary(Section lib);
-string *openBookFile(string);
+void openBookFile(Section);
 void checkOutBook();
 void showAllSections();
 void showAllBooks();
@@ -122,10 +122,46 @@ void loginPrompt()
 // Still working on populateLibrary
 Section populateLibrary(Section lib) 
 {
-	cout << "\n\nTesting the array of sections: " << "\n\t";
-	lib.getName();/*
-	Book book = Book("", "");
-	lib.addBook(book);               We're gonna have to figure this one out.  */
+	//cout << "\n\nTesting the array of sections: " << "\n\t";
+	//lib.getName();
+	string fileName = lib.getName();
+	fileName += ".txt";
+
+	
+	fstream myfile;
+	myfile.open(fileName);
+	while (myfile)
+	{
+		string title;
+		string author;
+		string dept;
+		//bool checkedOut= false;
+		string checkedOut;
+
+		//line = myfile.getline();
+		while(myfile){
+			if (!myfile.eof()){
+			getline(myfile, title, '\t');
+			}
+			getline(myfile, author, '\t');
+			getline(myfile, dept, '\t');
+			getline(myfile, checkedOut, '\n');
+			//getline(myfile, checkedOut, '\t');
+			//cout << "\n\n" << line << endl << endl;
+
+			//myfile >> title >> author >> dept >> checkedOut;
+
+			//title = line.get();
+			cout << "\n\nTesting title: " << title << endl;
+			cout << "Testing author: " << author << endl;
+			cout << "Testing bool (though it's really a string): " << checkedOut << endl << endl; // For some reason, there's always one additional entry. Not sure how to end myfile earlier.
+		}
+
+		//Book book = Book(title, author, dept, checkedOut);
+	}
+	myfile.close();
+
+
 	return lib;
 }
 
@@ -173,13 +209,13 @@ void showAllBooks() // loop through all sections and print name of book (book.ti
 
 
 // Just testing out an iterator for reading files.
-/*
-string *openBookFile(string book)
-{
-	string *bookProps = new string[4];
 
+void openBookFile(Section dept)
+{
+	//string *bookProps = new string[4];
+/*
 	ifstream myfile;
-	myfile.open(book);
+	myfile.open(".txt");
 	while (myfile)
 	{
 		string title;
@@ -190,10 +226,9 @@ string *openBookFile(string book)
 		myfile >> title >> author >> dept >> checkedOut;
 	}
 	myfile.close();
-	return bookProps;
+	return "";*/
 }
 
 // in vscode terminal
 // g++ main.cpp -o main.out
 // ./main.out
-*/
