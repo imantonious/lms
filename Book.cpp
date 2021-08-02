@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 Book::Book()
 {
@@ -45,13 +46,13 @@ Book::Book(string t, string a, string s, bool i)
 }
 
 string Book::getBookProps(){
-	cout << "\nThe title of this book is: " << title << endl;
+	cout << setw(20) << title << "\t\t" << setw(15) << author << "\t\t";
 
 	if (isAvailable == true){
-		cout << "This book is available to check out." << endl;
+		cout << setw(11) << "Available" << endl;
 	}
 	else
-		cout << "This book is currently unavailable.";
+		cout << setw(11) << "Unavailable.";
 	return title;
 }
 

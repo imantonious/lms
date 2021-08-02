@@ -2,7 +2,7 @@
 #include "Section.h"
 
 #include <string>
-
+#include <iomanip>
 using namespace std;
 
 
@@ -23,6 +23,7 @@ Section::Section(string n)
 // 	books.push_back(b);
 // }
 string Section::getName(){
+	//cout << "\n\nName is: " << name << endl;
 	return name;
 }
 
@@ -32,9 +33,14 @@ void Section::addBook(Book book){
 }
 
 void Section::viewBooks(){
-	for(int i = 0; i < books.size(); i++){
+	cout << "-----------------------------------------------------------------";
+	cout << endl << setw(20) << left << "Name\t\t" << setw(15) <<  "Author\t\t" << setw(11) << "Availability\n" << endl;
+	for(int i = 0; i < books.size()-1; i++){
+		//cout << "| ";
 		books[i].getBookProps();
+		//cout << " |";
 	}
+	//cout << "--------------------------------------------------";
 }
 
 Section::~Section() {
