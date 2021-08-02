@@ -39,7 +39,11 @@ int User::viewCart(){
 string User::getName(){
 	return name;
 }
-
+/*
+int User::*getCart(){
+	
+}
+*/
 User::~User()
 {
 }

@@ -115,9 +115,9 @@ void displayWelcome()
 int displayMainMenu()
 {
 	cout << "\n1. Add a Book to your Cart" << endl;
-	cout << "2. Return Books" << endl;
+	cout << "2. Return Books" << endl; // TODO
 	cout << "3. View Books by Department" << endl;
-	cout << "4. Add a Book" << endl;
+	cout << "4. Add a Book" << endl; // TODO
 	cout << "5. View Books in Cart" << endl;
 	cout << "0. Exit" << endl;
 	cout << "\n#: ";
@@ -153,12 +153,16 @@ int processMainMenuSelection(int option)
 
 	case 5:
 		int cartBooks;
+		int selection;
 
 		cout << "\t" << user.getName() << "'s Cart\n";
 		cartBooks = user.viewCart();
 		cout << "\n" << cartBooks +1 << ". Check out books";
 		cout << "\n0. Return" << endl << endl;
-		break;
+		//printReceipt(); // TODO: Build the print receipt
+		cout << "Make a selection: ";
+		cin >> selection;
+		return 100; // doesn't have to be 100.. this just gets us back to the main menu loop.
 	default:
 		cout << "Please enter a valid option.\n";
 		break;

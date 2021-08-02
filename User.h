@@ -20,6 +20,7 @@ public:
 	User(string);
 	void addToCart(Book);
 	int viewCart();
+	//int * getCart();
 	string getName();
 	~User();
 };
