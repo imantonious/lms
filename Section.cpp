@@ -43,6 +43,18 @@ void Section::viewBooks(){
 	//cout << "--------------------------------------------------";
 }
 
+void Section::bookList(){
+	//Section dept;
+	string bookTitle;
+	string author;
+	for (int i = 0; i < books.size()-1; i++){
+		bookTitle = books[i].getTitle();
+		author = books[i].getAuthor();
+		cout << "\t" << endl << i+1 << ". " << bookTitle << " - " << author;
+	}
+	cout << "0. Exit" << endl << endl;
+}
+
 Section::~Section() {
 };
 

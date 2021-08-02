@@ -25,7 +25,8 @@ void adminSignin();
 void loginPrompt();
 Section populateLibrary(Section lib);
 void viewDept(Section);
-void checkOutBook();
+int checkOutBook();
+int checkOutBook(Section); // overloaded function
 void showAllSections();
 int showBooksMenu();
 int subMenuSelection(int);
@@ -51,9 +52,7 @@ int main(int argc, char const *argv[])
 	for (int i = 0; i < SECTIONS; i++){
 		Section lib = library[i];
 		library[i] = populateLibrary(lib); 
-		//lib.viewBooks();// ? should accept library and return it populated
 	}
-	//void showAllBooks(Section library[]);
 
 	displayWelcome();
 	int userInput;
@@ -61,9 +60,9 @@ int main(int argc, char const *argv[])
 	Section i;
 	string dept;
 
+
 	do
 	{
-		cout << "enters dowhile" << endl;
 		userInput = displayMainMenu(); // TODO: shows up twice after making choice. fix
 		userInput = processMainMenuSelection(userInput);
 		switch(userInput){
@@ -86,6 +85,10 @@ int main(int argc, char const *argv[])
 					library[i].viewBooks();
 					}
 				cout << endl << endl;
+				break;
+			case 8:
+				userInput = checkOutBook();
+				checkOutBook(library[userInput - 1]);
 				break;
 		}
 		//userInput = subMenuSelection(userInput);
@@ -122,15 +125,13 @@ int processMainMenuSelection(int option)
 		return 0;
 	}
 
-	cout << "option is: " << option << endl;
+	cout << "\nYou selected Option #" << option << endl;
+
 
 	switch (option)
 	{
 	case 1:
-		checkOutBook();
-		return 1;
-		break;
-
+		return 8;
 	case 2:
 		bookReturn(); // TODO: make this function work. (based on userID / ID#)
 		return 2;
@@ -199,36 +200,25 @@ Section populateLibrary(Section lib)
 	return lib;
 }
 
-void checkOutBook()
+int checkOutBook()
 {
 	string bookName;
-	cout << "\n\n\tBook Checkout:\n"
-		 << "1. Enter the name of the book you would like to check out: " << endl;
-	cin >> bookName;
+	int dept;
 
-	int i;
-	cin >> i;
-	while (i)
-	{
-		switch (i)
-		{
-			case 0:
-				return;
-			case 1:
-				// TODO: make this function take the name of the book from the user and switch isAvailable bool to false
-				cout << "checkoutBookByName();" << endl;
-				i = 0; // exits loop
-				break;
-			case 2:
-				// TODO: output all the books with isAvailable set to true.
-				cout << "viewAllAvailableBooks();" << endl;
-				i = 0; // exits loop
-				break;
-			default:
-				cout << "Please enter a valid option.\n";
-				break;
-		}
-	}
+	cout << "\n\n\tBOOK CHECKOUT:\n";
+
+	dept = showBooksMenu();
+
+	return dept;
+}
+
+int checkOutBook(Section lib){
+	string section = lib.getName();
+	cout << "You are now viewing books from the " << section << " Department";
+
+	cout << "\nEnter a selection: " << endl;
+	lib.bookList();
+	return 0;
 }
 
 void bookReturn()
@@ -248,7 +238,7 @@ int showBooksMenu() // loop through all sections and print name of book (book.ti
 	cout << "5. Mechanical" << endl;
 	cout << "6. Architecture" << endl;
 	cout << "7. All Departments" << endl;
-	cout << "0. Exit" << endl;
+	cout << "0. Exit" << endl << endl;
 	
 	if(cin >> option && option > 0 && option <= 7){
 		return subMenuSelection(option);
@@ -262,10 +252,6 @@ int subMenuSelection(int option){
 }
 // Just testing out an iterator for reading files.
 
-void viewDept(Section dept)
-{
-	// I don't think this is needed
-}
 
 // in vscode terminal
 // g++ main.cpp -o main.out

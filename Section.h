@@ -3,6 +3,7 @@
 #define SECTION_H
 
 #include "Author.h"
+#include "Book.h"
 
 #include <string>
 #include <vector>
@@ -22,6 +23,7 @@ public:
 	string getName();
 	void addBook(Book);
 	void viewBooks();
+	void bookList();
 	// Section(string, Book);
 	~Section();
 };

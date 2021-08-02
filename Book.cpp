@@ -56,6 +56,18 @@ string Book::getBookProps(){
 	return title;
 }
 
+void Book::checkOut(){
+	isAvailable = false;
+}
+
+string Book::getTitle(){
+	return title;
+}
+
+string Book::getAuthor(){
+	return author;
+}
+
 Book::~Book()
 {
 }
