@@ -28,7 +28,7 @@ string Section::getName(){
 }
 
 void Section::addBook(Book book){
-	book.getBookProps();
+	//book.getBookProps();
 	books.push_back(book);
 }
 
@@ -57,6 +57,10 @@ int Section::bookList(){
 	}
 	cout << "\n0. Return" << endl << endl;
 	return bookCount;
+}
+
+Book Section::retrieveBook(int i){
+	return books[i];
 }
 
 Section::~Section() {

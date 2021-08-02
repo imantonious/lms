@@ -33,7 +33,7 @@ int showBooksMenu();
 int subMenuSelection(int);
 void bookReturn();
 
-User user = User();
+User user = User(); // This probably shouldn't be global..
 
 
 int main(int argc, char const *argv[])
@@ -114,10 +114,11 @@ void displayWelcome()
 
 int displayMainMenu()
 {
-	cout << "1. Check Out a Book" << endl;
+	cout << "\n1. Add a Book to your Cart" << endl;
 	cout << "2. Return Books" << endl;
 	cout << "3. View Books" << endl;
-	cout << "4. Donate a Book" << endl;
+	cout << "4. Add a Book" << endl;
+	cout << "5. View Books in Cart" << endl;
 	cout << "0. Exit" << endl;
 	cout << "\n#: ";
 
@@ -147,8 +148,12 @@ int processMainMenuSelection(int option)
 		break;
 	case 3:
 		//showBooksMenu();
+		cout << "\tView Books By Department\n";
 		return showBooksMenu();
-
+	case 5:
+		cout << "\t" << user.getName() << "'s Cart\n";
+		user.viewCart();
+		break;
 	default:
 		cout << "Please enter a valid option.\n";
 		break;
@@ -196,11 +201,9 @@ Section populateLibrary(Section lib)
 			getline(myfile, title, '\t');
 			getline(myfile, author, '\t');
 			getline(myfile, dept, '\t');
-			getline(myfile, checkedOut, '\n');
-		    //TODO For some reason, there's always one additional entry. Not sure how to end myfile earlier.
+			getline(myfile, checkedOut, '\n'); // There's an empty book that gets appended here. Not sure why but it's 'compensated for' in Section::bookList() - the for loop.
 
 			Book book = Book(title, author, dept, isA);
-			//book.getBookProps();
 			lib.addBook(book);
 		}
 	}
@@ -224,6 +227,8 @@ int checkOutBook()
 int checkOutBook(Section lib){
 	string section = lib.getName();
 	int selection;
+	Book book;
+
 	transform(section.begin(), section.end(), section.begin(), ::toupper); // I guess this just makes the string uppercase.
 
 	cout << "\n\t" << section << " DEPARTMENT\n";
@@ -232,8 +237,11 @@ int checkOutBook(Section lib){
 
 	cout << "\nEnter a selection to add to cart: ";
 	cin >> selection;
+	selection--;
 
+	book = lib.retrieveBook(selection);
 
+	user.addToCart(book);
 
 	return selection;
 }

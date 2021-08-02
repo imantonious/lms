@@ -22,6 +22,25 @@ void User::addToCart(Book book){
 	cart.push_back(book);
 }
 
+void User::viewCart(){
+	string bookTitle;
+	string author;
+	int bookCount = 0;
+	
+	for (int i = 0; i < cart.size(); i++){
+		bookTitle = cart[i].getTitle();
+		author = cart[i].getAuthor();
+		cout << "\t" << endl << i+1 << ". " << bookTitle << " - " << author;
+		bookCount++;
+	}
+	cout << "\n0. Return" << endl << endl;
+	//return bookCount;	
+}
+
+string User::getName(){
+	return name;
+}
+
 User::~User()
 {
 }

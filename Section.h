@@ -24,6 +24,7 @@ public:
 	void addBook(Book);
 	void viewBooks();
 	int bookList();
+	Book retrieveBook(int);
 	// Section(string, Book);
 	~Section();
 };

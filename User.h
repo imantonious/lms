@@ -19,6 +19,8 @@ public:
 	User();
 	User(string);
 	void addToCart(Book);
+	void viewCart();
+	string getName();
 	~User();
 };
 // yeah the setAdmin would be in the Admin . cpp file, which inherits from this but will change to true
