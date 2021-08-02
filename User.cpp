@@ -22,7 +22,7 @@ void User::addToCart(Book book){
 	cart.push_back(book);
 }
 
-void User::viewCart(){
+int User::viewCart(){
 	string bookTitle;
 	string author;
 	int bookCount = 0;
@@ -33,8 +33,7 @@ void User::viewCart(){
 		cout << "\t" << endl << i+1 << ". " << bookTitle << " - " << author;
 		bookCount++;
 	}
-	cout << "\n0. Return" << endl << endl;
-	//return bookCount;	
+	return bookCount;	
 }
 
 string User::getName(){

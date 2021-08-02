@@ -19,7 +19,7 @@ public:
 	User();
 	User(string);
 	void addToCart(Book);
-	void viewCart();
+	int viewCart();
 	string getName();
 	~User();
 };

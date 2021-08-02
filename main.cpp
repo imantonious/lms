@@ -116,7 +116,7 @@ int displayMainMenu()
 {
 	cout << "\n1. Add a Book to your Cart" << endl;
 	cout << "2. Return Books" << endl;
-	cout << "3. View Books" << endl;
+	cout << "3. View Books by Department" << endl;
 	cout << "4. Add a Book" << endl;
 	cout << "5. View Books in Cart" << endl;
 	cout << "0. Exit" << endl;
@@ -135,8 +135,8 @@ int processMainMenuSelection(int option)
 		return 0;
 	}
 
-	cout << "\nYou selected Option #" << option << endl;
-
+	//cout << "\nYou selected Option #" << option << endl;
+	cout << endl << endl;
 
 	switch (option)
 	{
@@ -147,12 +147,17 @@ int processMainMenuSelection(int option)
 		return 2;
 		break;
 	case 3:
-		//showBooksMenu();
 		cout << "\tView Books By Department\n";
 		return showBooksMenu();
+	case 4:
+
 	case 5:
+		int cartBooks;
+
 		cout << "\t" << user.getName() << "'s Cart\n";
-		user.viewCart();
+		cartBooks = user.viewCart();
+		cout << "\n" << cartBooks +1 << ". Check out books";
+		cout << "\n0. Return" << endl << endl;
 		break;
 	default:
 		cout << "Please enter a valid option.\n";
@@ -237,8 +242,10 @@ int checkOutBook(Section lib){
 
 	cout << "\nEnter a selection to add to cart: ";
 	cin >> selection;
-	selection--;
-
+	if (selection != 0)
+		selection--;
+	else
+		return 0;
 	book = lib.retrieveBook(selection);
 
 	user.addToCart(book);

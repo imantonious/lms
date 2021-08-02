@@ -3,6 +3,6 @@
 
 #include <iostream>
 
-class Magazine: private Book{
+class Magazine:  Book{
 
 };
