@@ -23,7 +23,7 @@ public:
 	string getName();
 	void addBook(Book);
 	void viewBooks();
-	void bookList();
+	int bookList();
 	// Section(string, Book);
 	~Section();
 };

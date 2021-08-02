@@ -7,7 +7,10 @@ using namespace std;
 
 User::User()
 {
-	name = " ";
+	//name = " ";
+	cout << "Enter your name: ";
+	cin >> name;
+
 }
 
 User::User(string n)
@@ -15,10 +18,8 @@ User::User(string n)
 	name = n;
 }
 
-User::User(string n, bool b) // only used to create admin by current existing admin
-{
-	name = n;
-	isAdmin = b;
+void User::addToCart(Book book){
+	cart.push_back(book);
 }
 
 User::~User()

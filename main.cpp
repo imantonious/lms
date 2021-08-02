@@ -2,6 +2,7 @@
 #include "Section.h"
 #include "Section.cpp"
 #include "User.h"
+#include "User.cpp"
 #include "Book.h"
 #include "Book.cpp"
 
@@ -31,6 +32,9 @@ void showAllSections();
 int showBooksMenu();
 int subMenuSelection(int);
 void bookReturn();
+
+User user = User();
+
 
 int main(int argc, char const *argv[])
 {
@@ -66,6 +70,9 @@ int main(int argc, char const *argv[])
 		userInput = displayMainMenu(); // TODO: shows up twice after making choice. fix
 		userInput = processMainMenuSelection(userInput);
 		switch(userInput){
+			case 0:
+				userInput = 0;
+				break;			
 			case 1:
 			case 2:
 			case 3:
@@ -90,6 +97,7 @@ int main(int argc, char const *argv[])
 				userInput = checkOutBook();
 				checkOutBook(library[userInput - 1]);
 				break;
+
 		}
 		//userInput = subMenuSelection(userInput);
 
@@ -111,6 +119,7 @@ int displayMainMenu()
 	cout << "3. View Books" << endl;
 	cout << "4. Donate a Book" << endl;
 	cout << "0. Exit" << endl;
+	cout << "\n#: ";
 
 	int ch;
 	cin >> ch;
@@ -205,7 +214,7 @@ int checkOutBook()
 	string bookName;
 	int dept;
 
-	cout << "\n\n\tBOOK CHECKOUT:\n";
+	cout << "\n\n\tBOOK CHECKOUT\n\n";
 
 	dept = showBooksMenu();
 
@@ -214,11 +223,19 @@ int checkOutBook()
 
 int checkOutBook(Section lib){
 	string section = lib.getName();
-	cout << "You are now viewing books from the " << section << " Department";
+	int selection;
+	transform(section.begin(), section.end(), section.begin(), ::toupper); // I guess this just makes the string uppercase.
 
-	cout << "\nEnter a selection: " << endl;
+	cout << "\n\t" << section << " DEPARTMENT\n";
+
 	lib.bookList();
-	return 0;
+
+	cout << "\nEnter a selection to add to cart: ";
+	cin >> selection;
+
+
+
+	return selection;
 }
 
 void bookReturn()
@@ -230,16 +247,17 @@ void bookReturn()
 int showBooksMenu() // loop through all sections and print name of book (book.title) if it is available to checkout
 {
 	int option;
-	cout << "\nSelect a department: \n";
 	cout << "1. Computer" << endl;
 	cout << "2. Electrical" << endl;
 	cout << "3. Civil" << endl;
 	cout << "4. Electronics" << endl;
 	cout << "5. Mechanical" << endl;
 	cout << "6. Architecture" << endl;
-	cout << "7. All Departments" << endl;
+	cout << "7. View All Departments" << endl;
 	cout << "0. Exit" << endl << endl;
 	
+	cout << "\nSelect a department: ";
+
 	if(cin >> option && option > 0 && option <= 7){
 		return subMenuSelection(option);
 	}
