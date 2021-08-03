@@ -44,6 +44,7 @@ int main(int argc, char const *argv[])
 	// get all sections prefilled wth books
 	// Section[Books] -> ComputerSection{book1, book2...etc.}
 	//! edit sections to hold books
+
 	Section Computer = Section("Computer");
 	Section Electrical = Section("Electrical");
 	Section Civil = Section("Civil");
@@ -53,7 +54,7 @@ int main(int argc, char const *argv[])
 
 	Section library[SECTIONS] = {Computer, Electrical, Civil, Electronics, Mechanical, Architecture};
 	
-	for (int i = 0; i < SECTIONS; i++){
+	for (int i = 0; i < SECTIONS; i++) {
 		Section lib = library[i];
 		library[i] = populateLibrary(lib); 
 	}
@@ -64,15 +65,14 @@ int main(int argc, char const *argv[])
 	Section i;
 	string dept;
 
-
 	do
 	{
 		userInput = displayMainMenu(); // TODO: shows up twice after making choice. fix
 		userInput = processMainMenuSelection(userInput);
-		switch(userInput){
+		switch(userInput) {
 			case 0:
 				userInput = 0;
-				break;			
+				break;
 			case 1:
 			case 2:
 			case 3:
@@ -86,7 +86,7 @@ int main(int argc, char const *argv[])
 				cout << endl << endl;
 				break;
 			case 7:
-				for (int i = 0; i < SECTIONS; i++){
+				for (int i = 0; i < SECTIONS; i++) {
 					dept = library[i].getName();
 					cout << "\n\n\nThe " << dept << " Department contains the following books: \n\n";
 					library[i].viewBooks();
@@ -100,7 +100,6 @@ int main(int argc, char const *argv[])
 
 		}
 		//userInput = subMenuSelection(userInput);
-
 
 	} while (userInput != 0);
 	return 0;
@@ -135,37 +134,36 @@ int processMainMenuSelection(int option)
 		return 0;
 	}
 
-	//cout << "\nYou selected Option #" << option << endl;
 	cout << endl << endl;
 
-	switch (option)
-	{
-	case 1:
-		return 8;
-	case 2:
-		bookReturn(); // TODO: make this function work. (based on userID / ID#)
-		return 2;
-		break;
-	case 3:
-		cout << "\tView Books By Department\n";
-		return showBooksMenu();
-	case 4:
+	switch (option) {
+		case 1:
+			return 8;
+		case 2:
+			bookReturn();
+			return 2;
+			break;
+		case 3:
+			cout << "\tView Books By Department\n";
+			return showBooksMenu();
+		case 4:
 
-	case 5:
-		int cartBooks;
-		int selection;
+		case 5:
+			int cartBooks;
+			int selection;
 
-		cout << "\t" << user.getName() << "'s Cart\n";
-		cartBooks = user.viewCart();
-		cout << "\n" << cartBooks +1 << ". Check out books";
-		cout << "\n0. Return" << endl << endl;
-		//printReceipt(); // TODO: Build the print receipt
-		cout << "Make a selection: ";
-		cin >> selection;
-		return 100; // doesn't have to be 100.. this just gets us back to the main menu loop.
-	default:
-		cout << "Please enter a valid option.\n";
-		break;
+			cout << "\t" << user.getName() << "'s Cart\n";
+			cartBooks = user.viewCart();
+			cout << "\n" << cartBooks + 1 << ". Check out books";
+			cout << "\n0. Return" << endl << endl;
+			//printReceipt(); // TODO: Build the print receipt
+			cout << "Make a selection: ";
+			cin >> selection;
+
+			return 100; // doesn't have to be 100.. this just gets us back to the main menu loop.
+		default:
+			cout << "Please enter a valid option.\n";
+			break;
 	}
 	return 0;
 }
@@ -188,33 +186,31 @@ void loginPrompt()
 // create books in file
 // Department of books would come from a file.  Computer.txt, Electrical.txt, etc.
 
-Section populateLibrary(Section lib) 
+Section populateLibrary(Section lib)
 {
-
 	string fileName = lib.getName();
 	fileName += ".txt";
 
-	
 	fstream myfile;
 	myfile.open(fileName);
-	while (myfile)
-	{
-		string title;
+
+	while (myfile) {
+		// Initializes the variables 
+		string title; 
 		string author;
 		string dept;
-		bool isA = true;
-		string checkedOut;
+		string isAvailString;
+		bool isAvailable;
 
-		//line = myfile.getline();
-		while(myfile){
-			getline(myfile, title, '\t');
-			getline(myfile, author, '\t');
-			getline(myfile, dept, '\t');
-			getline(myfile, checkedOut, '\n'); // There's an empty book that gets appended here. Not sure why but it's 'compensated for' in Section::bookList() - the for loop.
+		// Populates the variables
+		getline(myfile, title, '\t');
+		getline(myfile, author, '\t');
+		getline(myfile, dept, '\t');
+		getline(myfile, isAvailString, '\n'); // looking for a new line since bool is the last element of each books line
+		isAvailable = (isAvailString == "false") ? false : true; // sets isAvailable to type bool
 
-			Book book = Book(title, author, dept, isA);
-			lib.addBook(book);
-		}
+		Book book = Book(title, author, dept, isAvailable);
+		lib.addBook(book);
 	}
 	myfile.close();
 
@@ -233,7 +229,7 @@ int checkOutBook()
 	return dept;
 }
 
-int checkOutBook(Section lib){
+int checkOutBook(Section lib) {
 	string section = lib.getName();
 	int selection;
 	Book book;
@@ -277,15 +273,16 @@ int showBooksMenu() // loop through all sections and print name of book (book.ti
 	
 	cout << "\nSelect a department: ";
 
-	if(cin >> option && option > 0 && option <= 7){
+	if (cin >> option && option > 0 && option <= 7) {
 		return subMenuSelection(option);
 	}
-	else
+	else {
 		return 0;
+	}
 }
 
-int subMenuSelection(int option){
-	return (option );
+int subMenuSelection(int option) {
+	return option;
 }
 // Just testing out an iterator for reading files.
 

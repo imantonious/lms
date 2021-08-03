@@ -9,7 +9,7 @@
 Book::Book()
 {
 	title = "";
-	author = "";//Author("");
+	author = "";
 	dept = "";
 	isAvailable = true;
 }
@@ -24,27 +24,28 @@ Book::Book(string t, string a, string s, bool i)
 	isAvailable = i;
 }
 
-string Book::getBookProps(){
-	cout << setw(20) << title << "\t\t" << setw(15) << author << "\t\t";
-
-	if (isAvailable == true){
+bool Book::getBookProps() {
+	if (isAvailable == true) {
+		cout << setw(20) << title << "\t\t" << setw(15) << author << "\t\t";
 		cout << setw(11) << "Available" << endl;
 	}
-	else
-		cout << setw(11) << "Unavailable.";
-	return title;
+	return isAvailable;
 }
 
-void Book::checkOut(){
+void Book::checkOut() {
 	isAvailable = false;
 }
 
-string Book::getTitle(){
+string Book::getTitle() {
 	return title;
 }
 
-string Book::getAuthor(){
+string Book::getAuthor() {
 	return author;
+}
+
+void Book::setAvailability() {
+	isAvailable = !isAvailable;
 }
 
 Book::~Book()

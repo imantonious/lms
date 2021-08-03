@@ -10,16 +10,26 @@ You can add a book to the Civil section, delete a book from the Electrical secti
 Print final checkout receipt as output to screen
 Requirements:
 
+-----------------------------------------------------------------------------------------------------------
+
+	PROJECT REQUIREMENTS:
+
 Must use arrays 							- Done - Array of Sections in main.CPP
 vectors 									- Done - Sections have vectors, the User's cart is a vector 
-pointers									- TODO
 build classes that will support the data	- Done - User, Book, Section classes
-have a virtual function						- TODO
 have a base/derived class example			- Done - Magazine : Book class = base : derived 
 display the data							- Done - View books selections in main.cpp
 a menu to select which module functionality - Done - Switch menu in main.cpp
 Work with file input and output				- Done - File I/O used to maintain the library
 Separate with headers and CPP files			- Done
+
+-----------------------------------------------------------------------------------------------------------
+
+have a virtual function						- TODO
+pointers									- TODO
+
+-----------------------------------------------------------------------------------------------------------
+
 
 Deliverables:
 

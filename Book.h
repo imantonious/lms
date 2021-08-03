@@ -16,7 +16,7 @@ private:
 	string title;
 	// Author author;
 	string author;
-	bool isAvailable;// = true;
+	bool isAvailable;
 	string dept;
 
 public:
@@ -26,9 +26,10 @@ public:
 	//Book(string, string, string);
 	Book(string, string, string, bool);
 	void checkOut();
-	string getBookProps();
+	bool getBookProps();
 	string getTitle();
 	string getAuthor();
+	void setAvailability();
 	~Book();
 
 };
