@@ -1,4 +1,8 @@
-Water	Florentino	Civil	true
-Highway	Stephenson	Civil	true
-DAMNS	Zhengfei	Civil	true
-CivilProcedures	Visvesvaraya	Civil	true
+Water	Florentino	Civil	true 
+Highway	Stephenson	Civil	true 
+DAMNS	Zhengfei	Civil	true 
+CivilProcedures	Visvesvaraya	Civil	true 
+Magazine	Issue #1	Civil	true 
+Magazine	Issue #1	Civil	true 
+Magazine	Issue #1	Civil	true 
+Magazine	Issue #1	Civil	true 
