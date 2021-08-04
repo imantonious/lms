@@ -25,10 +25,10 @@ Book::Book(string t, string a, string s, bool i)
 }
 
 bool Book::getBookProps() {
-	if (isAvailable == true) {
-		cout << setw(20) << title << "\t\t" << setw(15) << author << "\t\t";
-		cout << setw(15) << "Available: " << isAvailable << endl;
-	}
+
+	cout << setw(20) << title << "\t\t" << setw(15) << author << "\t\t";
+	cout << setw(15) << "Available: " << isAvailable << endl;
+
 	return isAvailable;
 }
 

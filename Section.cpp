@@ -29,6 +29,7 @@ void Section::addBook(Book book) {
 void Section::viewBooks() {
 	cout << "-----------------------------------------------------------------";
 	cout << endl << setw(20) << left << "Name\t\t" << setw(15) << "Author\t\t" << setw(11) << "Availability\n" << endl;
+	
 	for(int i = 0; i < books.size(); i++) {
 		bool isAvail = books[i].getBookProps();
 	}
