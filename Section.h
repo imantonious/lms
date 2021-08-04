@@ -21,6 +21,7 @@ public:
 	Section();
 	Section(string);
 	string getName();
+	void addBook();
 	void addBook(Book);
 	void viewBooks();
 	int bookList();

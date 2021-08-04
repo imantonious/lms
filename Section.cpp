@@ -19,6 +19,56 @@ Section::Section(string n)
 string Section::getName() {
 	return name;
 }
+void Section::addBook() {
+	string title;
+	string author;
+	string dept;
+	int opt;
+	bool isAvailable;
+
+	cout << "\n\n\tADD BOOK\n\nPlease enter the name of the book: ";
+	cin >> title;
+
+	cout << "\n\nEnter the Author: ";
+	cin >> author;
+
+	cout << "\n\n1. Computer" << endl;
+	cout << "2. Electrical" << endl;
+	cout << "3. Civil" << endl;
+	cout << "4. Electronics" << endl;
+	cout << "5. Mechanical" << endl;
+	cout << "6. Architecture" << endl;
+	cout << "7. Magazines (Don't pick this in production)" << endl;
+	cout << "0. Exit" << endl << endl;
+
+	cout << "\n\nChoose a section: ";
+
+	cin >> opt;
+
+	switch(opt){
+		case 1: dept = "Computer";
+			break;
+		case 2: dept = "Electrical";
+			break;
+		case 3: dept = "Civil";
+			break;
+		case 4: dept = "Electronics";
+			break;
+		case 5: dept = "Mechanical";
+			break;
+		case 6: dept = "Architecture";
+			break;
+		case 7: //TODO make thing funny thing work. Supposed to 'add' magazines.
+		case 0:
+			break;
+		default:
+			cout << "\n\nInvalid Selection\n\n";
+			return;
+			break;
+	}
+	Book book = Book(title, author, dept, true);
+	addBook(book);
+}
 
 void Section::addBook(Book book) {
 	books.push_back(book);

@@ -32,6 +32,7 @@ Section checkOutBook(Section& lib, int); // overloaded function
 void showAllSections();
 int showBooksMenu();
 int subMenuSelection(int);
+void addBook();
 void bookReturn();
 
 User user = User(); // This probably shouldn't be global..
@@ -56,7 +57,6 @@ int main(int argc, char const *argv[])
 	Section library[SECTIONS] = {Computer, Electrical, Civil, Electronics, Mechanical, Architecture};
 
 	for (int i = 0; i < SECTIONS; i++) {
-		//Section lib = library[i];
 		popLibrary(library[i]); 
 	}
 
@@ -99,10 +99,17 @@ int main(int argc, char const *argv[])
 				userInput = checkOutBook();
 				library[userInput-1] = checkOutBook(library[userInput - 1], userInput);
 				break;
+			case 9:
+			case 10: //Add A Book Register 10-17
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+			case 16:
+			case 17: library[userInput-11].addBook();
 		userInput = displayMainMenu();	
 		}
-		//userInput = subMenuSelection(userInput);
-
 	} while (userInput != 0);
 	return 0;
 }
@@ -126,11 +133,12 @@ int displayMainMenu()
 	int ch;
 	cin >> ch;
 	return ch;
-	//processMainMenuSelection(ch);
 }
 
 int processMainMenuSelection(int option)
 {
+	int pos;
+
 	if (option == 0)
 	{
 		return 0;
@@ -149,7 +157,10 @@ int processMainMenuSelection(int option)
 			cout << "\tView Books By Department\n";
 			return showBooksMenu();
 		case 4:
-
+			cout << "\tAdd a Book\n\nSelect a Department to add to:\n";
+			pos = showBooksMenu();
+			//addBook(pos);
+			return pos+10;
 		case 5:
 			int cartBooks;
 			int selection;
@@ -168,20 +179,6 @@ int processMainMenuSelection(int option)
 			break;
 	}
 	return 0;
-}
-
-void studentSignin()
-{
-	loginPrompt();
-}
-
-void loginPrompt()
-{
-	int userID;
-
-	cout << "Enter the username: ";
-	cin >> userID;
-
 }
 
 void popLibrary(Section &section) {
@@ -230,8 +227,7 @@ int checkOutBook()
 Section checkOutBook(Section &lib, int pos) {
 	string section = lib.getName();
 	int selection;
-	Book book; // This is a problem - it creates a new object and this variable ends up being changed. 
-	// This is no longer a problem, but a feature.
+	Book book; 
 
 	transform(section.begin(), section.end(), section.begin(), ::toupper); // I guess this just makes the string uppercase.
 
