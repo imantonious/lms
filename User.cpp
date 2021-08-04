@@ -52,14 +52,19 @@ string User::getName() {
 void User::printReceipt() {
 	string title;
 	string author;
-
-	cout << setw(40) << "\n\n\n\n----------------------------------------\n\n\n\n"
-		<< "Totals: \n\t";
+	cout << "\t\tRECEIPT";
+	cout << setw(40) << "\n\n\n****************************************";
+	cout << setw(40) << "\n----------------------------------------\n\n\n\n"
+		<< "Totals: ";
 	for (int i = 0; i < cart.size(); i++) {
+		cout << "\n\t";
 		author = cart[i].getAuthor();
 		title = cart[i].getTitle();
 		cout << i+1 << ". " << title << "\n\t - By: " << author << endl << endl;
 	}
+
+	cout << setw(40) << "\n----------------------------------------\n";
+	cout << setw(40) << "****************************************\n\n\n\n";
 }
 User::~User()
 {
