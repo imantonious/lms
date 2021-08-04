@@ -29,7 +29,7 @@ public:
 	bool getBookProps();
 	string getTitle();
 	string getAuthor();
-	void setAvailability();
+	void setAvailability(bool);
 	bool getAvailability();
 	~Book();
 

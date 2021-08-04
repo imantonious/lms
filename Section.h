@@ -21,13 +21,14 @@ public:
 	Section();
 	Section(string);
 	string getName();
-	void addBook();
+	void addBook(int);
 	void addBook(Book);
 	void viewBooks();
 	int bookList();
 	Book retrieveBook(int);
 	void removeBook(Book, int);
 	void reinsert(Book, int);
+	void showUnavailableBooks();
 	// Section(string, Book);
 	~Section();
 };

@@ -34,6 +34,7 @@ int showBooksMenu();
 int subMenuSelection(int);
 void addBook();
 void bookReturn();
+void writeToFile(Section&);
 
 User user = User(); // This probably shouldn't be global..
 
@@ -95,21 +96,28 @@ int main(int argc, char const *argv[])
 					}
 				cout << endl << endl;
 				break;
-			case 8:
+			case 8: 																// ADD Book to Cart option
 				userInput = checkOutBook();
 				library[userInput-1] = checkOutBook(library[userInput - 1], userInput);
 				break;
 			case 9:
-			case 10: //Add A Book Register 10-17
+			case 10: 
+				userInput = showBooksMenu();//Add A Book 
+				library[userInput-1].addBook(userInput);
 			case 11:
+				cout << "\t\nBOOK RETURN\n\n";
+				userInput = showBooksMenu();
+				library[userInput-1].showUnavailableBooks();
+			
 			case 12:
 			case 13:
 			case 14:
 			case 15:
 			case 16:
-			case 17: library[userInput-11].addBook();
-		userInput = displayMainMenu();	
-		}
+			case 17: 
+				break;
+		//userInput = displayMainMenu();	
+		} //userInput = displayMainMenu();	
 	} while (userInput != 0);
 	return 0;
 }
@@ -150,17 +158,14 @@ int processMainMenuSelection(int option)
 		case 1:
 			return 8;
 		case 2:
-			bookReturn();
-			return 2;
+			//bookReturn();
+			return 11;
 			break;
 		case 3:
 			cout << "\tView Books By Department\n";
 			return showBooksMenu();
 		case 4:
-			cout << "\tAdd a Book\n\nSelect a Department to add to:\n";
-			pos = showBooksMenu();
-			//addBook(pos);
-			return pos+10;
+			return 10;
 		case 5:
 			int cartBooks;
 			int selection;
@@ -244,12 +249,13 @@ Section checkOutBook(Section &lib, int pos) {
 
 	book = lib.retrieveBook(selection);
 
+	user.addToCart(book);
+
 	return lib; 
 }
 
 void bookReturn()
 {
-	// change
 	return;
 }
 
@@ -262,7 +268,8 @@ int showBooksMenu() // loop through all sections and print name of book (book.ti
 	cout << "4. Electronics" << endl;
 	cout << "5. Mechanical" << endl;
 	cout << "6. Architecture" << endl;
-	cout << "7. View All Departments" << endl;
+	cout << "7. Magazines" << endl;
+	cout << "8. View All Departments (Don't select during demo)" << endl;//TODO this doesn't work
 	cout << "0. Exit" << endl << endl;
 	
 	cout << "\nSelect a department: ";
@@ -277,6 +284,11 @@ int showBooksMenu() // loop through all sections and print name of book (book.ti
 
 int subMenuSelection(int option) {
 	return option;
+}
+
+void writeToFile(Section& section) {
+	string fileName = section.getName();
+	fileName += ".txt";
 }
 
 // in vscode terminal

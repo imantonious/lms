@@ -45,8 +45,8 @@ string Book::getAuthor() {
 	return author;
 }
 
-void Book::setAvailability() {
-	isAvailable = !isAvailable;
+void Book::setAvailability(bool userInput) {
+	isAvailable = userInput;
 }
 bool Book::getAvailability() {
 	//cout << "This is the availability: " << isAvailable << ". \n";

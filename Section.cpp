@@ -19,11 +19,10 @@ Section::Section(string n)
 string Section::getName() {
 	return name;
 }
-void Section::addBook() {
+void Section::addBook(int opt) {
 	string title;
 	string author;
 	string dept;
-	int opt;
 	bool isAvailable;
 
 	cout << "\n\n\tADD BOOK\n\nPlease enter the name of the book: ";
@@ -32,18 +31,6 @@ void Section::addBook() {
 	cout << "\n\nEnter the Author: ";
 	cin >> author;
 
-	cout << "\n\n1. Computer" << endl;
-	cout << "2. Electrical" << endl;
-	cout << "3. Civil" << endl;
-	cout << "4. Electronics" << endl;
-	cout << "5. Mechanical" << endl;
-	cout << "6. Architecture" << endl;
-	cout << "7. Magazines (Don't pick this in production)" << endl;
-	cout << "0. Exit" << endl << endl;
-
-	cout << "\n\nChoose a section: ";
-
-	cin >> opt;
 
 	switch(opt){
 		case 1: dept = "Computer";
@@ -115,6 +102,28 @@ void Section::removeBook(Book book, int pos){
 void Section::reinsert(Book book, int pos){
 	books.erase (books.begin() + pos);
 	addBook(book);
+}
+
+void Section::showUnavailableBooks() {
+	string title;
+	int opt;
+	int pos = 0;
+
+	for (int i = 0; i < books.size(); i++){
+		if (books[i].getAvailability() != true) {
+			cout << i + 1 << ": ";
+			books[i].getBookProps();
+			pos++;
+		}
+	}
+	cout << "\n\nSelect an option: ";
+	cin >> opt;
+
+	title =	books[opt-1].getTitle();
+	books[opt-1].setAvailability(true);
+
+	cout << "\n\nThe book " << title << " has been returned to the library.\n\n";
+
 }
 
 Section::~Section() {
