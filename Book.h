@@ -30,6 +30,7 @@ public:
 	string getTitle();
 	string getAuthor();
 	void setAvailability();
+	bool getAvailability();
 	~Book();
 
 };

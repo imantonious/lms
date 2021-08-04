@@ -22,13 +22,14 @@ string Section::getName() {
 
 void Section::addBook(Book book) {
 	books.push_back(book);
-	book.setAvailability(); //TODO : not changing in library, or in books, fix if can
+	//viewBooks();
+	//book.setAvailability(); //TODO : not changing in library, or in books, fix if can
 }
 
 void Section::viewBooks() {
 	cout << "-----------------------------------------------------------------";
 	cout << endl << setw(20) << left << "Name\t\t" << setw(15) << "Author\t\t" << setw(11) << "Availability\n" << endl;
-	for(int i = 0; i < books.size() - 1; i++) {
+	for(int i = 0; i < books.size(); i++) {
 		bool isAvail = books[i].getBookProps();
 	}
 }
@@ -39,10 +40,12 @@ int Section::bookList() {
 	string author;
 	int bookCount = 0;
 
-	for (int i = 0; i < books.size() - 1; i++) {
+	for (int i = 0; i < books.size(); i++) {
 		bookTitle = books[i].getTitle();
 		author = books[i].getAuthor();
-		cout << "\t" << endl << i+1 << ". " << bookTitle << " - " << author;
+		if (books[i].getAvailability() == true){
+			cout << "\t" << endl << i+1 << ". " << bookTitle << " - " << author;
+		}
 		bookCount++;
 	}
 	cout << "\n0. Return" << endl << endl;
@@ -50,7 +53,17 @@ int Section::bookList() {
 }
 
 Book Section::retrieveBook(int i){
+	books[i].checkOut();
 	return books[i];
+}
+
+void Section::removeBook(Book book, int pos){
+	books.erase (books.begin() + pos);
+}
+
+void Section::reinsert(Book book, int pos){
+	books.erase (books.begin() + pos);
+	addBook(book);
 }
 
 Section::~Section() {

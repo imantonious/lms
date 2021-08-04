@@ -25,9 +25,10 @@ void studentSignin();
 void adminSignin();
 void loginPrompt();
 Section populateLibrary(Section lib);
+void popLibrary(Section& lib);
 void viewDept(Section);
 int checkOutBook();
-int checkOutBook(Section); // overloaded function
+Section checkOutBook(Section& lib, int); // overloaded function
 void showAllSections();
 int showBooksMenu();
 int subMenuSelection(int);
@@ -53,11 +54,12 @@ int main(int argc, char const *argv[])
 	Section Architecture = Section("Architecture");
 
 	Section library[SECTIONS] = {Computer, Electrical, Civil, Electronics, Mechanical, Architecture};
-	
+
 	for (int i = 0; i < SECTIONS; i++) {
-		Section lib = library[i];
-		library[i] = populateLibrary(lib); 
+		//Section lib = library[i];
+		popLibrary(library[i]); 
 	}
+
 
 	displayWelcome();
 	int userInput;
@@ -95,9 +97,9 @@ int main(int argc, char const *argv[])
 				break;
 			case 8:
 				userInput = checkOutBook();
-				checkOutBook(library[userInput - 1]);
+				library[userInput-1] = checkOutBook(library[userInput - 1], userInput);
 				break;
-
+		userInput = displayMainMenu();	
 		}
 		//userInput = subMenuSelection(userInput);
 
@@ -182,39 +184,35 @@ void loginPrompt()
 
 }
 
-// Sections -> Computer, Electrical, Civil, Electronics, Mechanical, and Architecture
-// create books in file
-// Department of books would come from a file.  Computer.txt, Electrical.txt, etc.
+void popLibrary(Section &section) {
 
-Section populateLibrary(Section lib)
-{
-	string fileName = lib.getName();
+	string fileName = section.getName();
 	fileName += ".txt";
 
 	fstream myfile;
 	myfile.open(fileName);
-
 	while (myfile) {
-		// Initializes the variables 
+				// Initializes the variables 
 		string title; 
 		string author;
 		string dept;
 		string isAvailString;
-		bool isAvailable;
+		bool isAvailable = true;
 
 		// Populates the variables
 		getline(myfile, title, '\t');
 		getline(myfile, author, '\t');
 		getline(myfile, dept, '\t');
 		getline(myfile, isAvailString, '\n'); // looking for a new line since bool is the last element of each books line
-		isAvailable = (isAvailString == "false") ? false : true; // sets isAvailable to type bool
+		//isAvailable = (isAvailString == "false") ? false : true; // sets isAvailable to type bool
 
 		Book book = Book(title, author, dept, isAvailable);
-		lib.addBook(book);
+		if (title != ""){
+			section.addBook(book);
+		}
+	
 	}
-	myfile.close();
-
-	return lib;
+	myfile.close();	
 }
 
 int checkOutBook()
@@ -229,10 +227,11 @@ int checkOutBook()
 	return dept;
 }
 
-int checkOutBook(Section lib) {
+Section checkOutBook(Section &lib, int pos) {
 	string section = lib.getName();
 	int selection;
-	Book book;
+	Book book; // This is a problem - it creates a new object and this variable ends up being changed. 
+	// This is no longer a problem, but a feature.
 
 	transform(section.begin(), section.end(), section.begin(), ::toupper); // I guess this just makes the string uppercase.
 
@@ -245,12 +244,11 @@ int checkOutBook(Section lib) {
 	if (selection != 0)
 		selection--;
 	else
-		return 0;
+		return lib;
+
 	book = lib.retrieveBook(selection);
 
-	user.addToCart(book);
-
-	return selection;
+	return lib; 
 }
 
 void bookReturn()
@@ -284,8 +282,6 @@ int showBooksMenu() // loop through all sections and print name of book (book.ti
 int subMenuSelection(int option) {
 	return option;
 }
-// Just testing out an iterator for reading files.
-
 
 // in vscode terminal
 // g++ main.cpp -o main.out

@@ -27,13 +27,14 @@ Book::Book(string t, string a, string s, bool i)
 bool Book::getBookProps() {
 	if (isAvailable == true) {
 		cout << setw(20) << title << "\t\t" << setw(15) << author << "\t\t";
-		cout << setw(11) << "Available" << endl;
+		cout << setw(15) << "Available: " << isAvailable << endl;
 	}
 	return isAvailable;
 }
 
 void Book::checkOut() {
 	isAvailable = false;
+	//getAvailability();
 }
 
 string Book::getTitle() {
@@ -47,6 +48,12 @@ string Book::getAuthor() {
 void Book::setAvailability() {
 	isAvailable = !isAvailable;
 }
+bool Book::getAvailability() {
+	//cout << "This is the availability: " << isAvailable << ". \n";
+	return isAvailable;
+}
+
+
 
 Book::~Book()
 {

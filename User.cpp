@@ -8,11 +8,17 @@ using namespace std;
 
 User::User()
 {
+	cout << "\n\n\n\n\t\t\t\t////////////////////////////" << endl;
+	cout << "\t\t\t\t////////////////////////////" << endl;
+	cout << "\t\t\t\t//     .        .         //" << endl;
+	cout << "\t\t\t\t//.  LIBRARY MANAGEMENT   //" << endl;
+	cout << "\t\t\t\t//       SYSTEM     .     //" << endl;
+	cout << "\t\t\t\t//     .         .        //" << endl;
+	cout << "\t\t\t\t////////////////////////////" << endl;
+	cout << "\t\t\t\t///////////////logo by Sarah\n\n\n\n\n" << endl;
 	name = " ";
-	cout << "Enter your name: ";
+	cout << "\t\t\t\tEnter your name: ";
 	cin >> name;
-
-
 }
 
 User::User(string n)
@@ -21,7 +27,7 @@ User::User(string n)
 }
 
 void User::addToCart(Book book) {
-	book.setAvailability();
+	//book.setAvailability();
 	cart.push_back(book);
 }
 

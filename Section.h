@@ -25,6 +25,8 @@ public:
 	void viewBooks();
 	int bookList();
 	Book retrieveBook(int);
+	void removeBook(Book, int);
+	void reinsert(Book, int);
 	// Section(string, Book);
 	~Section();
 };
