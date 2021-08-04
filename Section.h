@@ -2,7 +2,7 @@
 #ifndef SECTION_H
 #define SECTION_H
 
-#include "Author.h"
+//#include "Author.h"
 #include "Book.h"
 #include "Magazine.h"
 

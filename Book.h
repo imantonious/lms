@@ -2,7 +2,7 @@
 #ifndef BOOK_H
 #define BOOK_H
 
-#include "Author.h"
+//#include "Author.h"
 #include "Section.h"
 
 #include <string>
