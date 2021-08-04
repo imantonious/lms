@@ -11,7 +11,7 @@ Book::Book()
 	title = "";
 	author = "";
 	dept = "";
-	isAvailable = true;
+	isAvailable = false;
 }
 
 Book::Book(string t, string a, string s, bool i)

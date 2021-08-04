@@ -5,6 +5,8 @@
 #include "User.cpp"
 #include "Book.h"
 #include "Book.cpp"
+#include "Magazine.h"
+#include "Magazine.cpp"
 
 #include <iostream>
 #include <istream>
@@ -33,7 +35,6 @@ void showAllSections();
 int showBooksMenu();
 int subMenuSelection(int);
 void addBook();
-void bookReturn();
 void writeToFile(Section&);
 
 User user = User(); // This probably shouldn't be global..
@@ -207,7 +208,7 @@ void popLibrary(Section &section) {
 		string author;
 		string dept;
 		string isAvailString;
-		bool isAvailable = true;
+		bool isAvailable;
 
 		// Populates the variables
 		getline(myfile, title, '\t');
@@ -216,12 +217,23 @@ void popLibrary(Section &section) {
 		getline(myfile, isAvailString, '\n'); // looking for a new line since bool is the last element of each books line
 		//isAvailable = (isAvailString == "false") ? false : true; // sets isAvailable to type bool
 
+		if (isAvailString == "false") {
+			isAvailable = false;
+		}
+		else 
+			isAvailable = true;
+			
+
 		Book book = Book(title, author, dept, isAvailable);
+
 		if (title != ""){
 			section.addBook(book);
 		}
 	
 	}
+	string dept = section.getName();
+	Magazine magazine = Magazine("Magazine", "Issue #1", dept, true);
+	section.addMagazine(magazine, magazine.title, magazine.author, magazine.dept, true);
 	myfile.close();	
 }
 
@@ -260,11 +272,6 @@ Section checkOutBook(Section &lib, int pos) {
 	user.addToCart(book);
 
 	return lib; 
-}
-
-void bookReturn()
-{
-	return;
 }
 
 int showBooksMenu() // loop through all sections and print name of book (book.title) if it is available to checkout

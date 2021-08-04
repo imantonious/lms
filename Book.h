@@ -12,7 +12,7 @@ using namespace std;
 
 class Book
 {
-private:
+protected:
 	string title;
 	// Author author;
 	string author;
@@ -21,17 +21,13 @@ private:
 
 public:
 	Book();
-	//Book(string, string);
-	// Book(string, Author);
-	//Book(string, string, string);
 	Book(string, string, string, bool);
 	void checkOut();
-	bool getBookProps();
+	virtual bool getBookProps();
 	string getTitle();
 	string getAuthor();
 	void setAvailability(bool);
 	bool getAvailability();
 	~Book();
-
 };
 #endif

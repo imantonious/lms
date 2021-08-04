@@ -137,6 +137,7 @@ void Section::writeBooks() {
 		string title = books[i].getTitle();
 		string author = books[i].getAuthor();
 		bool avail = books[i].getAvailability();
+
 		string available;
 		if (avail == 1){
 			available = "true";
@@ -147,6 +148,16 @@ void Section::writeBooks() {
 		myfile << title << "\t" << author << "\t" << name << "\t" << available << " \n";
 	}
 	myfile.close();
+}
+
+void Section::addMagazine(Magazine magazine, string t, string a, string d, bool b) {
+	//books.push_back(magazine);
+	string title = t;
+	string author = a;
+	string dept = d;
+	
+	Book book = Book(title, author, dept, true);
+	addBook(book);
 }
 
 Section::~Section() {
