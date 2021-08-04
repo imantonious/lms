@@ -126,6 +126,29 @@ void Section::showUnavailableBooks() {
 
 }
 
+void Section::writeBooks() {
+
+	string fileName = name;
+	fileName += ".txt";
+
+	fstream myfile;
+	myfile.open(fileName);
+	for (int i = 0; i < books.size(); i++) {
+		string title = books[i].getTitle();
+		string author = books[i].getAuthor();
+		bool avail = books[i].getAvailability();
+		string available;
+		if (avail == 1){
+			available = "true";
+		}
+		else 
+			available = "false";
+
+		myfile << title << "\t" << author << "\t" << name << "\t" << available << " \n";
+	}
+	myfile.close();
+}
+
 Section::~Section() {
 };
 

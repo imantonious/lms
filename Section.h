@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -29,6 +30,7 @@ public:
 	void removeBook(Book, int);
 	void reinsert(Book, int);
 	void showUnavailableBooks();
+	void writeBooks();
 	// Section(string, Book);
 	~Section();
 };

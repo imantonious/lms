@@ -19,8 +19,8 @@ public:
 	User();
 	User(string);
 	void addToCart(Book);
+	void printReceipt();
 	int viewCart();
-	//int * getCart();
 	string getName();
 	~User();
 };

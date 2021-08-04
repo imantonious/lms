@@ -49,10 +49,17 @@ string User::getName() {
 	return name;
 }
 
-void groupProject() {
-	cout << "/////////////////////////////////////////////////////"
-	<< 	"/////////////////////////////////////////////////////\n" << "//" << right << "//\n";
-	cout << "//" << right << "//";
+void User::printReceipt() {
+	string title;
+	string author;
+
+	cout << setw(40) << "\n\n\n\n----------------------------------------\n\n\n\n"
+		<< "Totals: \n\t";
+	for (int i = 0; i < cart.size(); i++) {
+		author = cart[i].getAuthor();
+		title = cart[i].getTitle();
+		cout << i+1 << ". " << title << "\n\t - By: " << author << endl << endl;
+	}
 }
 User::~User()
 {

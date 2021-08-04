@@ -104,11 +104,12 @@ int main(int argc, char const *argv[])
 			case 10: 
 				userInput = showBooksMenu();//Add A Book 
 				library[userInput-1].addBook(userInput);
+				break;
 			case 11:
 				cout << "\t\nBOOK RETURN\n\n";
 				userInput = showBooksMenu();
 				library[userInput-1].showUnavailableBooks();
-			
+				break;
 			case 12:
 			case 13:
 			case 14:
@@ -119,6 +120,9 @@ int main(int argc, char const *argv[])
 		//userInput = displayMainMenu();	
 		} //userInput = displayMainMenu();	
 	} while (userInput != 0);
+	for (int pos = 0; pos < SECTIONS; pos++) {
+		writeToFile(library[pos]);
+	}
 	return 0;
 }
 
@@ -158,7 +162,6 @@ int processMainMenuSelection(int option)
 		case 1:
 			return 8;
 		case 2:
-			//bookReturn();
 			return 11;
 			break;
 		case 3:
@@ -177,8 +180,13 @@ int processMainMenuSelection(int option)
 			//printReceipt(); // TODO: Build the print receipt
 			cout << "Make a selection: ";
 			cin >> selection;
-
-			return 100; // doesn't have to be 100.. this just gets us back to the main menu loop.
+			if(selection == cartBooks+1){
+				user.printReceipt();
+				return 0;
+			}
+			//else if      // We can build functionality here to return the book from the user's cart back to the library.
+			else 
+				return 100; // doesn't have to be 100.. this just gets us back to the main menu loop.
 		default:
 			cout << "Please enter a valid option.\n";
 			break;
@@ -287,8 +295,7 @@ int subMenuSelection(int option) {
 }
 
 void writeToFile(Section& section) {
-	string fileName = section.getName();
-	fileName += ".txt";
+	section.writeBooks();
 }
 
 // in vscode terminal
